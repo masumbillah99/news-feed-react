@@ -16,12 +16,13 @@ export default function NewsBoard() {
 
   return (
     <div className="container mx-auto grid grid-cols-12 gap-8">
+      {/* Left column */}
       <div className="col-span-12 grid grid-cols-12 gap-6 self-start xl:col-span-8">
-        {/* First row with larger card */}
         <>
+          {/* First row with larger card */}
           {column1.slice(1, 2).map((news) => (
             <div
-              key={news.publishedAt}
+              key={news.title}
               className="col-span-12 grid grid-cols-12 gap-4"
             >
               <NewsCard news={news} />
@@ -30,43 +31,25 @@ export default function NewsBoard() {
         </>
 
         {/* Remaining smaller cards */}
-        <div className="col-span-12 grid grid-cols-12 gap-4">
+        {/* <div className="col-span-12 grid grid-cols-12 gap-4"> */}
+        <>
           {column1Data.map((news) => (
             <div
-              key={news.publishedAt}
+              key={news.title}
               className="col-span-12 md:col-span-6 lg:col-span-4"
             >
               <NewsCard news={news} />
             </div>
           ))}
-        </div>
+        </>
+        {/* </div> */}
       </div>
 
-      {/*       
-      <div className="col-span-12 grid grid-cols-12 gap-6 self-start xl:col-span-8">
-        {column1.map((news, index) => (
-          <div
-            key={news.publishedAt}
-            className={`col-span-12 md:col-span-6 lg:col-span-4 shadow-lg
-            ${index === 0 && "col-span-12 grid grid-cols-12 gap-4"} ${
-              index === 1 && "col-span-12 grid grid-cols-12 gap-4 lg:col-span-8"
-            }`}
-          >
-            <NewsCard news={news} />
-            <hr />
-          </div>
-        ))}
-      </div> 
-      */}
-
-      {/* Right Column */}
+      {/* Right column */}
       <div className="col-span-12 self-start xl:col-span-4">
         <div className="space-y-6 divide-y-2 divide-[#D5D1C9]">
           {column2.map((news) => (
-            <div
-              key={news.publishedAt}
-              className="col-span-12 mb-6 md:col-span-8"
-            >
+            <div key={news.title} className="col-span-12 mb-6 md:col-span-8">
               <NewsCard news={news} />
             </div>
           ))}

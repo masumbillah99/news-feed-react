@@ -6,7 +6,7 @@ const useNewsQuery = () => {
   const [error, setError] = useState(null);
 
   // data fetching function
-  const fetchNewsData = async () => {
+  const fetchNewsData = async (category) => {
     setLoading({ state: true, message: "Fetching data..." });
     try {
       setLoading({
@@ -15,10 +15,12 @@ const useNewsQuery = () => {
         message: "Fetching news data...",
       });
 
-      const response = await fetch("http://localhost:8000/v2/top-headlines");
+      const response = await fetch(
+        `http://localhost:8000/v2/top-headlines?category=${category}`
+      );
 
       if (!response.ok) {
-        const errorMessage = `${response.statusText}: ${response.status}`;
+        const errorMessage = `Failed to fetch news data: ${response.status}`;
         throw new Error(errorMessage);
       }
 
@@ -33,10 +35,10 @@ const useNewsQuery = () => {
   };
 
   useEffect(() => {
-    fetchNewsData();
+    fetchNewsData("general");
   }, []);
 
-  return { allNews, error, loading };
+  return { allNews, error, loading, fetchNewsData };
 };
 
 export default useNewsQuery;
