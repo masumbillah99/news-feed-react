@@ -3,6 +3,12 @@ import MenuBar from "./MenuBar";
 import SearchBar from "./SearchBar";
 
 export default function Header() {
+  const date = new Date();
+  const dayOfWeekOptions = { weekday: "long" };
+  const monthOptions = { month: "long" };
+  const dayOfWeek = date.toLocaleString("en-us", dayOfWeekOptions);
+  const month = date.toLocaleString("en-us", monthOptions);
+
   return (
     <nav className="border-b border-black py-6 md:py-8">
       <div className="container mx-auto flex flex-wrap items-center justify-between gap-6">
@@ -57,7 +63,9 @@ export default function Header() {
               strokeLinejoin="round"
             />
           </svg>
-          <span>Thursday, February 25, 2021</span>
+          <span>
+            {dayOfWeek}, {month} {date.getDate()}, {date.getFullYear()}
+          </span>
         </div>
 
         {/* search bar */}
