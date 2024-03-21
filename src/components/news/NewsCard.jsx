@@ -31,7 +31,7 @@ export default function NewsCard({ news }) {
           </div>{" "}
         </>
       ) : (
-        <div className="col-span-12 lg:col-span-4 my-5">
+        <div className="col-span-12 md:col-span-4 my-5">
           <a href="#">
             <h3 className="mb-2.5 text-2xl font-bold lg:text-[28px]">
               {title}

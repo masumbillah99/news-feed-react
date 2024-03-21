@@ -9,7 +9,7 @@ function App() {
     <NewsProvider>
       <Header />
 
-      <main class="my-10 lg:my-14">
+      <main className="my-10 lg:my-14">
         <NewsBoard />
       </main>
 

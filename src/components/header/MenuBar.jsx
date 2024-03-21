@@ -13,12 +13,17 @@ export default function MenuBar() {
       <ul className="flex flex-wrap items-center justify-center gap-5 text-xs font-semibold lg:text-base">
         <li>
           <a onClick={() => handleMenuItemClick("general")} href="#">
-            General
+            Home
           </a>
         </li>
         <li>
           <a onClick={() => handleMenuItemClick("business")} href="#">
             Business
+          </a>
+        </li>
+        <li>
+          <a onClick={() => handleMenuItemClick("general")} href="#">
+            General
           </a>
         </li>
         <li>
