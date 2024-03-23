@@ -1,5 +1,6 @@
 import { createContext } from "react";
 
 const NewsContext = createContext("");
+const SearchContext = createContext("");
 
-export { NewsContext };
+export { NewsContext, SearchContext };

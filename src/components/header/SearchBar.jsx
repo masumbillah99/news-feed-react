@@ -1,20 +1,14 @@
 import { useContext, useState } from "react";
 import searchIcon from "../../assets/icons/search.svg";
-import { NewsContext } from "../../context";
+import { SearchContext } from "../../context";
 import useDebounce from "../../hooks/useDebounce";
 
 export default function SearchBar() {
   const [show, setShow] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const { searchNewsData } = useContext(NewsContext);
+  const { setSearchValue } = useContext(SearchContext);
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   searchNewsData(searchTerm);
-  // };
-
-  const doSearch = useDebounce((value) => {
-    searchNewsData(value);
+  const doSearch = useDebounce(async (value) => {
+    setSearchValue(value);
   }, 500);
 
   const handleSearchChange = (e) => {

@@ -4,56 +4,64 @@ import NewsCard from "./NewsCard";
 
 export default function NewsBoard() {
   const { allNews } = useContext(NewsContext);
+  const { articles, result } = allNews;
 
   // remove no 1 data list from allNews
-  const newNewsArray = [...allNews.slice(0, 1), ...allNews.slice(2)];
-  // console.log(newData);
+  // const newNewsArray = [...articles?.slice(0, 1), ...articles?.slice(2)];
+  const removeSecondIndex = articles?.slice(0, 1).concat(articles?.slice(2));
 
   // Split the news array into two separate arrays for each column
-  const column1 = allNews.slice(0, Math.ceil(allNews.length / 2));
-  const column1Data = newNewsArray.slice(0, Math.ceil(newNewsArray.length / 2));
-  const column2 = allNews.slice(Math.ceil(allNews.length / 2));
+  const column1 = articles?.slice(0, Math.ceil(articles?.length / 2));
+  const dataWithoutSecondIndex = removeSecondIndex?.slice(
+    0,
+    Math.ceil(removeSecondIndex?.length / 2)
+  );
+  const column2 = articles?.slice(Math.ceil(articles?.length / 2));
 
   return (
     <div className="container mx-auto grid grid-cols-12 gap-8">
       {/* Left column */}
       <div className="col-span-12 grid grid-cols-12 gap-6 self-start xl:col-span-8">
-        <>
-          {/* First row with larger card */}
-          {column1.slice(1, 2).map((news) => (
-            <div
-              key={news.title}
-              className="col-span-12 grid grid-cols-12 gap-4"
-            >
-              <NewsCard news={news} />
-            </div>
-          ))}
-        </>
+        {/* First row with larger card */}
+        {column1?.slice(1, 2).map((news) => (
+          <div key={news.title} className="col-span-12 grid grid-cols-12 gap-4">
+            <NewsCard news={news} />
+          </div>
+        ))}
 
         {/* Remaining smaller cards */}
-        {/* <div className="col-span-12 grid grid-cols-12 gap-4"> */}
-        <>
-          {column1Data.map((news) => (
-            <div
-              key={news.title}
-              className="col-span-12 md:col-span-6 lg:col-span-4"
-            >
-              <NewsCard news={news} />
-            </div>
-          ))}
-        </>
-        {/* </div> */}
+        {dataWithoutSecondIndex?.map((news) => (
+          <div
+            key={news.title}
+            className="col-span-12 md:col-span-6 lg:col-span-4"
+          >
+            <NewsCard news={news} />
+          </div>
+        ))}
       </div>
 
       {/* Right column */}
       <div className="col-span-12 self-start xl:col-span-4">
         <div className="space-y-6 divide-y-2 divide-[#D5D1C9]">
-          {column2.map((news) => (
+          {column2?.map((news) => (
             <div key={news.title} className="col-span-12 mb-6 md:col-span-8">
               <NewsCard news={news} />
             </div>
           ))}
         </div>
+      </div>
+
+      {/* if result  */}
+      <div className="col-span-12 grid grid-cols-12 gap-6 xl:col-span-8">
+        {result &&
+          result?.map((result) => (
+            <div
+              key={result.title}
+              className="col-span-12 grid grid-cols-12 gap-4"
+            >
+              <NewsCard news={result} />
+            </div>
+          ))}
       </div>
     </div>
   );

@@ -2,52 +2,43 @@ import { useContext } from "react";
 import { NewsContext } from "../../context";
 
 export default function MenuBar() {
-  const { fetchNewsData } = useContext(NewsContext);
-
-  const handleMenuItemClick = async (category) => {
-    await fetchNewsData(category);
-  };
+  const { setCategory } = useContext(NewsContext);
 
   return (
     <div className="container mx-auto mt-6">
       <ul className="flex flex-wrap items-center justify-center gap-5 text-xs font-semibold lg:text-base">
         <li>
-          <a onClick={() => handleMenuItemClick("general")} href="#">
-            Home
-          </a>
-        </li>
-        <li>
-          <a onClick={() => handleMenuItemClick("business")} href="#">
-            Business
-          </a>
-        </li>
-        <li>
-          <a onClick={() => handleMenuItemClick("general")} href="#">
+          <a onClick={() => setCategory("general")} href="#">
             General
           </a>
         </li>
         <li>
-          <a onClick={() => handleMenuItemClick("entertainment")} href="#">
+          <a onClick={() => setCategory("business")} href="#">
+            Business
+          </a>
+        </li>
+        <li>
+          <a onClick={() => setCategory("entertainment")} href="#">
             Entertainment
           </a>
         </li>
         <li>
-          <a onClick={() => handleMenuItemClick("health")} href="#">
+          <a onClick={() => setCategory("health")} href="#">
             Health
           </a>
         </li>
         <li>
-          <a onClick={() => handleMenuItemClick("science")} href="#">
+          <a onClick={() => setCategory("science")} href="#">
             Science
           </a>
         </li>
         <li>
-          <a onClick={() => handleMenuItemClick("sports")} href="#">
+          <a onClick={() => setCategory("sports")} href="#">
             Sports
           </a>
         </li>
         <li>
-          <a onClick={() => handleMenuItemClick("technology")} href="#">
+          <a onClick={() => setCategory("technology")} href="#">
             Technology
           </a>
         </li>
