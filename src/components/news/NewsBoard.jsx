@@ -18,7 +18,7 @@ export default function NewsBoard() {
   );
 
   return (
-    <div className="container mx-auto grid grid-cols-12 gap-8">
+    <div className={`container mx-auto grid grid-cols-12 gap-8`}>
       {/* Left column */}
       <div className="col-span-12 grid grid-cols-12 gap-6 self-start xl:col-span-8">
         {/* First row with larger card */}
@@ -51,9 +51,9 @@ export default function NewsBoard() {
       </div>
 
       {/* if search result found  */}
-      <div className="col-span-12 grid grid-cols-12 gap-6 self-start xl:col-span-8">
-        {result &&
-          result.map((news) => (
+      {result && result?.length > 0 ? (
+        <div className="col-span-12 grid grid-cols-12 gap-6 xl:col-span-8">
+          {result.map((news) => (
             <div
               key={news.title}
               className="col-span-12 grid grid-cols-12 gap-4"
@@ -61,7 +61,14 @@ export default function NewsBoard() {
               <NewsCard news={news} />
             </div>
           ))}
-      </div>
+        </div>
+      ) : (
+        <div className="pb-20">
+          <p className="text-3xl font-semibold text-center text-white bg-red-500 p-5 lg:w-[500px] mx-auto">
+            No data found
+          </p>
+        </div>
+      )}
     </div>
   );
 }
