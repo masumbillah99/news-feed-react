@@ -2,14 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { SearchContext } from "../context";
 
 const useNewsQuery = (category, searchTerm) => {
-  const [allNews, setAllNews] = useState([]);
+  const [allNews, setAllNews] = useState({});
   const [loading, setLoading] = useState({ state: false, message: "" });
   const [error, setError] = useState(null);
-  const { searchValue, setSearchValue } = useContext(SearchContext);
+  const { searchValue } = useContext(SearchContext);
 
   useEffect(() => {
     setError("");
-
     setLoading({
       ...loading,
       state: true,
@@ -25,7 +24,6 @@ const useNewsQuery = (category, searchTerm) => {
     }
 
     if (category && !searchValue && !searchTerm) {
-      setSearchValue(null);
       url += `?category=${category}`;
     }
 
@@ -39,7 +37,6 @@ const useNewsQuery = (category, searchTerm) => {
         }
 
         const data = await response.json();
-        // console.log(data);
         setAllNews(data);
       } catch (error) {
         setError(error);

@@ -1,13 +1,12 @@
 import logo from "../../assets/logo.png";
+import { getDate } from "../../utils/date-util";
 import MenuBar from "./MenuBar";
 import SearchBar from "./SearchBar";
 
 export default function Header() {
   const date = new Date();
   const dayOfWeekOptions = { weekday: "long" };
-  const monthOptions = { month: "long" };
   const dayOfWeek = date.toLocaleString("en-us", dayOfWeekOptions);
-  const month = date.toLocaleString("en-us", monthOptions);
 
   return (
     <nav className="border-b border-black py-6 md:py-8">
@@ -64,7 +63,7 @@ export default function Header() {
             />
           </svg>
           <span>
-            {dayOfWeek}, {month} {date.getDate()}, {date.getFullYear()}
+            {dayOfWeek}, {getDate(date, "date")}
           </span>
         </div>
 
@@ -80,7 +79,7 @@ export default function Header() {
         <SearchBar />
       </div>
 
-      {/* <!-- categories --> */}
+      {/* <!-- categories of menubar --> */}
       <MenuBar />
     </nav>
   );

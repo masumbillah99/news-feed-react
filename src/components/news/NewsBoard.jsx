@@ -7,16 +7,15 @@ export default function NewsBoard() {
   const { articles, result } = allNews;
 
   // remove no 1 data list from allNews
-  // const newNewsArray = [...articles?.slice(0, 1), ...articles?.slice(2)];
   const removeSecondIndex = articles?.slice(0, 1).concat(articles?.slice(2));
 
   // Split the news array into two separate arrays for each column
   const column1 = articles?.slice(0, Math.ceil(articles?.length / 2));
+  const column2 = articles?.slice(Math.ceil(articles?.length / 2));
   const dataWithoutSecondIndex = removeSecondIndex?.slice(
     0,
     Math.ceil(removeSecondIndex?.length / 2)
   );
-  const column2 = articles?.slice(Math.ceil(articles?.length / 2));
 
   return (
     <div className="container mx-auto grid grid-cols-12 gap-8">
@@ -29,7 +28,7 @@ export default function NewsBoard() {
           </div>
         ))}
 
-        {/* Remaining smaller cards */}
+        {/* smaller cards */}
         {dataWithoutSecondIndex?.map((news) => (
           <div
             key={news.title}
