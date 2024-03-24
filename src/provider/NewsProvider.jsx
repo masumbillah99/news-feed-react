@@ -4,8 +4,7 @@ import { useNewsQuery } from "../hooks";
 
 export default function ({ children }) {
   const [category, setCategory] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
-  const { allNews, loading, error } = useNewsQuery(category, searchTerm);
+  const { allNews, loading, error } = useNewsQuery(category);
 
   return (
     <NewsContext.Provider
@@ -14,7 +13,6 @@ export default function ({ children }) {
         loading,
         error,
         setCategory,
-        setSearchTerm,
       }}
     >
       {children}

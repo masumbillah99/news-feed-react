@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import searchIcon from "../../assets/icons/search.svg";
-import { SearchContext } from "../../context";
+import { NewsContext, SearchContext } from "../../context";
 import useDebounce from "../../hooks/useDebounce";
 
 export default function SearchBar() {
@@ -9,12 +9,11 @@ export default function SearchBar() {
 
   const doSearch = useDebounce(async (value) => {
     setSearchValue(value);
-  }, 500);
+  }, 800);
 
   const handleSearchChange = (e) => {
     e.preventDefault();
-    const value = e.target.value;
-    doSearch(value);
+    doSearch(e.target.value);
   };
 
   return (

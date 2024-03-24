@@ -5,7 +5,7 @@ const useNewsQuery = (category, searchTerm) => {
   const [allNews, setAllNews] = useState([]);
   const [loading, setLoading] = useState({ state: false, message: "" });
   const [error, setError] = useState(null);
-  const { searchValue } = useContext(SearchContext);
+  const { searchValue, setSearchValue } = useContext(SearchContext);
 
   useEffect(() => {
     setError("");
@@ -13,7 +13,7 @@ const useNewsQuery = (category, searchTerm) => {
     setLoading({
       ...loading,
       state: true,
-      message: "Fetching news data...! please wait...",
+      message: "Fetching news data! please wait...",
     });
 
     let url = `${import.meta.env.VITE_LOCAL_SERVER_URL}${
@@ -25,6 +25,7 @@ const useNewsQuery = (category, searchTerm) => {
     }
 
     if (category && !searchValue && !searchTerm) {
+      setSearchValue(null);
       url += `?category=${category}`;
     }
 

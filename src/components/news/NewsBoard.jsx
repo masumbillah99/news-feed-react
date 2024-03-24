@@ -51,15 +51,15 @@ export default function NewsBoard() {
         </div>
       </div>
 
-      {/* if result  */}
-      <div className="col-span-12 grid grid-cols-12 gap-6 xl:col-span-8">
+      {/* if search result found  */}
+      <div className="col-span-12 grid grid-cols-12 gap-6 self-start xl:col-span-8">
         {result &&
-          result?.map((result) => (
+          result.map((news) => (
             <div
-              key={result.title}
+              key={news.title}
               className="col-span-12 grid grid-cols-12 gap-4"
             >
-              <NewsCard news={result} />
+              <NewsCard news={news} />
             </div>
           ))}
       </div>

@@ -1,28 +1,54 @@
-const getFormattedDate = (dateValue, value, type, inMS) => {
-  if (!type) return value;
+function getDate(dateString, format) {
+  const date = new Date(dateString);
+  let options = {};
 
-  if (!inMS) {
-    value = value * 1000;
+  switch (format) {
+    case "full":
+      options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        timeZoneName: "short",
+      };
+      break;
+
+    case "date":
+      options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      break;
+
+    case "time":
+      options = {
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+      };
+      break;
+    default:
+      break;
   }
 
-  const date = new Date(dateValue);
-  let options;
+  const formatter = new Intl.DateTimeFormat("en-US", options);
+  return formatter.format(date);
+}
 
-  if (type === "date") {
-    options = {
-      // weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    };
-  } else if (type === "time") {
-    options = {
-      hour: "numeric",
-      minute: "numeric",
-    };
-  }
+export { getDate };
 
-  return new Intl.DateTimeFormat("en-us", options).format(date);
-};
+// Example usage:
+// const publishedAt = "2024-02-07T09:53:00Z";
 
-export { getFormattedDate };
+// Full date and time
+// console.log(formatDate(publishedAt, 'full'));
+
+// Only date
+// console.log(formatDate(publishedAt, 'date'));
+
+// Only time
+// console.log(formatDate(publishedAt, 'time'));
